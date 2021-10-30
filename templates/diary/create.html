@@ -1,0 +1,41 @@
+{%extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{%block linking %}
+{%endblock%}
+{% block content %}
+
+<link href = "{%static 'css/create.css' %}" rel="stylesheet">
+
+<div class="form">
+<form action="{% url 'diary:save_log' %}" method="post" >
+
+    {% csrf_token %}
+    
+    <!--<div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Created On:</label>
+        {{form.created_date}}
+       
+      </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        {{form.Title}}
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">What Happened?</label>
+        {{form.Body}}
+      </div>-->
+      {{ form.media }}
+      {{form.as_p}}
+      
+    
+
+<input type="submit" class="btn btn-outline-success">
+<input type="reset"  class="btn btn-outline-danger">
+</form>
+</div>
+
+
+{% endblock %}

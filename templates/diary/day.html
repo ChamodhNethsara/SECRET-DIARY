@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block linking %}
+
+
+
+
+
+
+{%endblock%}
+
+{%block content %}
+
+
+<link rel="stylesheet" type="text/css" href="{%static 'css/day.css' %}">
+<script src="{%static 'js/day.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
+<script src="{%static 'js/day.js' %}"></script>
+
+
+
+<header>
+    <div class="container text-center">
+      <h1>{{day_notes.0.created_date|date}}</h1>
+      <p>Story of your day...</p>
+    </div>
+  </header>
+  
+{% if  day_notes|length != 1 %}
+
+  <section class="timeline">
+    <div class="container">
+
+    {% for note in day_notes %}
+      
+      <div class="timeline-item">
+
+        <div class="timeline-img"></div>
+  
+        <div class="timeline-content timeline-card {%cycle 'js--fadeInRight' 'js--fadeInLeft' %}">
+          <div class="timeline-img-header">
+            <h2>{{note.Title|title}}</h2>
+          </div>
+          <div class="date">@{{note.created_date|date:'h:n A'}}</div>
+          <div id='mydiv'>
+          <p>{{note.Body|striptags|truncatechars:20}}</p>
+          </div>
+          <a href={{note.get_more_url}} id='btn-sm'>More</button></a>
+        </div>
+
+        </div>
+    {%endfor%}
+  
+     
+
+    </div>
+  </section>
+
+  {%else%}
+  <br>
+  <div class="container text-center">
+    <h1>{{day_notes.0.Title|safe}}</h1>
+    <p>S{{day_notes.0.Body|safe}}</p>
+  </div>
+  {%endif%}
+{%endblock%}
+

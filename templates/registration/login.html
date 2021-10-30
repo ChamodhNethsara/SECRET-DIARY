@@ -1,0 +1,45 @@
+{%extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+  <h1> First things first! Login to your account</h1>
+  <p>If you do not have an account, please contact the system administration. 
+    If you deserve an account they will create an account for you!
+  </p>
+    
+<form method="POST" action="{% url 'accounts:login' %}" class="form ui" >
+    
+    {% csrf_token %}
+
+    {%if form.errors %}
+    
+        {% for error in form.non_field_errors %} 
+        <div class="alert alert-warning form-group" role="alert">
+            {{ error|escape }}
+          </div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="form-group">
+        <label for="id_username">Username:</label>
+        <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" class="form-control"required id="id_username exampleInputEmail1">
+      <small id="emailHelp" class="form-text text-muted">Username is case-sensitive</small>
+    </div>
+    <div class="form-group">
+        <label for="id_password">Password:</label>
+        <input type="password" name="password" autocomplete="current-password" class="form-control"required id="id_password exampleInputPassword1">
+      <small id="emailHelp" class="form-text text-muted">password is case-sensitive</small>
+
+    </div>
+    <input type="hidden" name='next' value='{{ next }}' >
+
+    
+    <button type="submit" class="btn btn-primary">LOGIN</button>
+    <a href = "{% url 'accounts:password_reset' %}">lost password?</a>
+    
+
+
+  </form>
+</div>
+{% endblock %}
