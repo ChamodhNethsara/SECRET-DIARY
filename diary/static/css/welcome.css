@@ -1,15 +1,1 @@
-.welcome-note{
-    width: 100%;
-    height: 25%;
-    position: absolute;
-    margin-top: 70px;
-}
 
-
-.logo{
-    font-family: cursive;
-}
-.sub-welcome-note{
-    transform: rotate(180);
-    background-color: tomato;
-}
